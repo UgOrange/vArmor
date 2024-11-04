@@ -18,6 +18,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/bytedance/vArmor/pkg/metrics"
 	"os/exec"
 	"path/filepath"
 	"reflect"
@@ -102,7 +103,9 @@ func NewAgent(
 	managerPort int,
 	classifierPort int,
 	stopCh <-chan struct{},
-	log logr.Logger) (*Agent, error) {
+	metricsModule *metrics.MetricsModule,
+	log logr.Logger,
+) (*Agent, error) {
 
 	var err error
 
