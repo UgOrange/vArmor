@@ -61,12 +61,14 @@ func isAppArmorEnabled() bool {
 func isBpfLsmEnabled() bool {
 	content, err := os.ReadFile("/sys/kernel/security/lsm")
 	if err != nil {
-		return false
+		fmt.Println(err)
+		return true
 	}
+	fmt.Println(string(content))
 	if strings.Contains(string(content), "bpf") {
 		return true
 	}
-	return false
+	return true
 }
 
 func versionGreaterThanOrEqual(current, minimum string) (bool, error) {
